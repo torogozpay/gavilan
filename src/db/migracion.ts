@@ -9,7 +9,7 @@ let attemptsRemaining = 5;
 const runMigrations = async (): Promise<void> => {
   try {
     await createDatabase();
-    logger.info('database migrations...');
+    logger.log('database migrations...');
     await migrate({
       databaseUrl: config,
       migrationsTable: 'migrations',
@@ -19,12 +19,12 @@ const runMigrations = async (): Promise<void> => {
     eventEmitter.emit('migrations-complete');
   } catch (e) {
     console.error(e.stack);
-    logger.error('error running migrations', e.stack);
+    logger.log('error running migrations', e.stack);
     attemptsRemaining--;
     if (attemptsRemaining) {
       setTimeout(async () => await runMigrations(), 1000);
     } else {
-      logger.info('Database migrations failed too many times...');
+      logger.log('Database migrations failed too many times...');
     }
   }
 };
