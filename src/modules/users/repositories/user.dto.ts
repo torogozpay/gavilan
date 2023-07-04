@@ -16,3 +16,16 @@ export class UserDto {
     this.cloud_user_id = '';
   }
 }
+
+export class UpdateUserDto {
+  @ApiProperty()
+  email: string;
+
+  @ApiProperty()
+  cloud_user_id: string;
+
+  constructor() {
+    this.email = '';
+    this.cloud_user_id = '';
+  }
+}
